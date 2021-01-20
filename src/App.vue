@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-view />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+ import { mapActions } from "vuex";
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      token: localStorage.getItem("token")
+    }
+  },
+  methods: {
+     ...mapActions(['getUser'])
+  },
+  watch: {
+    token(newtoken) {
+      if(newtoken!==null) {
+        this.getUser(JSON.parse(newtoken).value);
+      }
+    }
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  /* @import url('http://kiratikreations.com/cdn/bootstrap-grid.css');
+  @import url('http://kiratikreations.com/cdn/bootstrap.min.css');
+  @import url('http://kiratikreations.com/cdn/drawer.min.css ');
+  @import url('http://kiratikreations.com/cdn/jquery.emojiarea.css');
+  @import url('http://kiratikreations.com/cdn/light-box.css');
+  @import url('http://kiratikreations.com/cdn/responsive.css');
+  @import url('http://kiratikreations.com/cdn/style.css');
+  @import url('http://kiratikreations.com/cdn/styleayush.css');
+  @import url('http://kiratikreations.com/cdn/styles.min.css'); */
 </style>
