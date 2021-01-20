@@ -1,4 +1,3 @@
-# a-vue-glexpace
 
 ## Project setup
 ```
